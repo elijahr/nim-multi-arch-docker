@@ -1,0 +1,17 @@
+ARG ARCH={{ arch }}
+FROM elijahru/distcc-cross-compiler-client-{{ distro_slug }}:latest
+
+# Allow compiling both locally and via distcc
+ENV DISTCC_FALLBACK=1
+
+RUN apt-get update; \
+  apt-get install -y \
+    git curl; \
+  apt-get clean
+
+# Install Nim
+ENV NIM_CI_VERSION=github-workflows
+ADD https://raw.githubusercontent.com/elijahr/nim-ci/github-workflows/nim-ci.sh /scripts/
+RUN /bin/bash -c "source /scripts/nim-ci.sh"
+
+ENV PATH=/root/.active-nim/bin:/root/.nimble/bin:/root/.choosenim/bin:/usr/lib/ccache:/usr/lib/distcc:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

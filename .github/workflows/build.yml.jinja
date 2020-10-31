@@ -1,0 +1,94 @@
+_anchors:
+  checkout_repo: &checkout_repo
+    name: Checkout repo
+    uses: actions/checkout@v2
+    with:
+      fetch-depth: 1
+      submodules: recursive
+
+  setup_qemu: &setup_qemu
+    name: Set up QEMU
+    uses: docker/setup-qemu-action@v1
+    with:
+      platforms: all
+
+  setup_buildx: &setup_buildx
+    name: Set up Docker Buildx
+    id: buildx
+    uses: docker/setup-buildx-action@v1
+    with:
+      version: latest
+
+  install_pip_requirements: &install_pip_requirements
+    name: Install pip requirements
+    run: |
+      pip3 install -r requirements.txt
+
+  dockerhub_login: &dockerhub_login
+    name: Login to Docker Hub
+    run: |
+      echo {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %} | docker login \
+        -u elijahru --password-stdin
+
+name: {{ distro }}
+
+on:
+  push:
+    branches: [ '*' ]
+    tags: [ '*' ]
+
+jobs:
+  {% for arch in archs %}
+  build-{{ arch }}:
+    name: {{ arch }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - *checkout_repo
+      - *setup_qemu
+      - *setup_buildx
+      - *install_pip_requirements
+      - *dockerhub_login
+      - name: Build image
+        run: |
+          ./builder.py build \
+            --distro {{ distro }} \
+            --arch {{ arch }} \
+            --tag $(basename {% raw %}${{ github.event.ref }}{% endraw %}) \
+            --push
+      - name: Test
+        run: |
+          ./builder.py test \
+            --distro {{ distro }} \
+            --arch {{ arch }} \
+            --tag $(basename {% raw %}${{ github.event.ref }}{% endraw %})
+  {% endfor %}
+
+  push_manifests:
+    name: Push manifest
+    if: {% raw %}${{ github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/') }}{% endraw %}
+
+    runs-on: ubuntu-latest
+    needs:
+      {% for arch in archs %}
+      - build-{{ arch }}
+      {% endfor %}
+
+    strategy:
+      matrix:
+        include:
+          - manifest_tag: latest
+            image_tag: '{% raw %}${{ github.ref }}{% endraw %}'
+          - manifest_tag: '{% raw %}${{ github.ref }}{% endraw %}'
+            image_tag: '{% raw %}${{ github.ref }}{% endraw %}'
+
+    steps:
+      - *checkout_repo
+      - *install_pip_requirements
+      - *dockerhub_login
+      - name: Push manifest
+        run: |
+          ./builder.py push-manifest \
+            --distro {{ distro }} \
+            --manifest-tag $(basename {% raw %}${{ matrix.manifest_tag }}{% endraw %}) \
+            --image-tag $(basename {% raw %}${{ matrix.image_tag }}{% endraw %})
