@@ -57,25 +57,6 @@ docker_manifest_args = {
 }
 
 
-def configure_qemu():
-    if not which("qemu-aarch64"):
-        raise RuntimeError(
-            "QEMU not installed, install missing package (apt: qemu,qemu-user-static | pacman: qemu-headless,qemu-headless-arch-extra | brew: qemu)."
-        )
-
-    images = docker("images", "--format", "{{ .Repository }}", _out=None, _err=None)
-    if "multiarch/qemu-user-static" not in images:
-        docker(
-            "run",
-            "--rm",
-            "--privileged",
-            "multiarch/qemu-user-static",
-            "--reset",
-            "-p",
-            "yes",
-        )
-
-
 class Distro(metaclass=abc.ABCMeta):
     template_path = None
     registry = {}
@@ -234,8 +215,6 @@ class Distro(metaclass=abc.ABCMeta):
             self.interpolate_yaml(self.github_actions_yml_path)
 
     def build(self, arch, tag, push=False):
-        configure_qemu()
-
         self.render(tag=tag)
 
         image = f"elijahru/nim:{tag}-{slugify(self.name)}-{arch}"
@@ -260,9 +239,7 @@ class Distro(metaclass=abc.ABCMeta):
 
     def push_manifest(self, manifest_tag, image_tag):
         os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
-        manifest = (
-            f"elijahru/nim-{slugify(self.name)}:{manifest_tag}"
-        )
+        manifest = f"elijahru/nim-{slugify(self.name)}:{manifest_tag}"
         image = f"elijahru/nim-{slugify(self.name)}:{image_tag}"
         images = {arch: f"{image}-{arch}" for arch in self.archs}
 
@@ -304,9 +281,7 @@ class Distro(metaclass=abc.ABCMeta):
         id = image_id()
         if id:
             docker("kill", id, _out=None, _err=None)
-        docker_compose(
-            "-f", self.docker_compose_yml_path, "up", "-d", f"builder"
-        )
+        docker_compose("-f", self.docker_compose_yml_path, "up", "-d", f"builder")
         time.sleep(5)
         try:
             yield
@@ -319,9 +294,7 @@ class Distro(metaclass=abc.ABCMeta):
         self.render(tag=tag)
 
         with self.run_host():
-            docker_compose(
-                "-f", self.docker_compose_yml_path, "run", arch
-            )
+            docker_compose("-f", self.docker_compose_yml_path, "run", arch)
 
 
 class DebianLike(Distro):
