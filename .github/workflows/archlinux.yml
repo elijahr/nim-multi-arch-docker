@@ -41,18 +41,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch amd64 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch amd64 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -93,18 +99,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch amd64 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch amd64 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -145,18 +157,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch amd64 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch amd64 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -197,18 +215,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch amd64 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch amd64 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -251,18 +275,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -303,18 +333,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -355,18 +391,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -407,18 +449,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v6 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -461,18 +509,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -513,18 +567,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -565,18 +625,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -617,18 +683,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm32v7 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -671,18 +743,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -723,18 +801,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -775,18 +859,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -827,18 +917,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro archlinux \
           --arch arm64v8 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro archlinux \
@@ -882,6 +978,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro archlinux \
@@ -920,6 +1018,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro archlinux \
@@ -958,6 +1058,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro archlinux \
@@ -996,6 +1098,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro archlinux \

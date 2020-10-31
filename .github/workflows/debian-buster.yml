@@ -41,18 +41,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -93,18 +99,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -145,18 +157,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -197,18 +215,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch amd64 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -251,18 +275,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch i386 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch i386 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -303,18 +333,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch i386 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch i386 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -355,18 +391,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch i386 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch i386 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -407,18 +449,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch i386 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch i386 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -461,18 +509,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -513,18 +567,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -565,18 +625,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -617,18 +683,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm32v7 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -671,18 +743,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -723,18 +801,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -775,18 +859,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -827,18 +917,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch arm64v8 \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -881,18 +977,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -933,18 +1035,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -985,18 +1093,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -1037,18 +1151,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch ppc64le \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -1091,18 +1211,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch s390x \
           --nim-version v0.20.2
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch s390x \
           --nim-version v0.20.2
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -1143,18 +1269,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch s390x \
           --nim-version v1.0.10
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch s390x \
           --nim-version v1.0.10
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -1195,18 +1327,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch s390x \
           --nim-version v1.2.8
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch s390x \
           --nim-version v1.2.8
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -1247,18 +1385,24 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Build image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
           --arch s390x \
           --nim-version v1.4.0
     - name: Test
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py test \
           --distro debian:buster \
           --arch s390x \
           --nim-version v1.4.0
     - name: Push image
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
           --distro debian:buster \
@@ -1306,6 +1450,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro debian:buster \
@@ -1348,6 +1494,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro debian:buster \
@@ -1390,6 +1538,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro debian:buster \
@@ -1432,6 +1582,8 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
           --distro debian:buster \

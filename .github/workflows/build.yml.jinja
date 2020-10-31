@@ -28,7 +28,7 @@ _anchors:
   dockerhub_login: &dockerhub_login
     name: Login to Docker Hub
     run: |
-      echo {% raw %}${{ secrets.DOCKERHUB_TOKEN }}{% endraw %} | docker login \
+      echo {{ '${{ secrets.DOCKERHUB_TOKEN }}' }} | docker login \
         -u elijahru --password-stdin
 
 name: {{ distro }}
@@ -52,18 +52,24 @@ jobs:
       - *install_pip_requirements
       - *dockerhub_login
       - name: Build image
+        env:
+          GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
         run: |
           ./builder.py build \
             --distro {{ distro }} \
             --arch {{ arch }} \
             --nim-version {{ nim_version }}
       - name: Test
+        env:
+          GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
         run: |
           ./builder.py test \
             --distro {{ distro }} \
             --arch {{ arch }} \
             --nim-version {{ nim_version }}
       - name: Push image
+        env:
+          GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
         run: |
           ./builder.py build \
             --distro {{ distro }} \
@@ -89,6 +95,8 @@ jobs:
       - *install_pip_requirements
       - *dockerhub_login
       - name: Push manifest
+        env:
+          GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
         run: |
           ./builder.py push-manifest \
             --distro {{ distro }} \
