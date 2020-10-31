@@ -44,7 +44,7 @@ MIN_NIM_VERSION = semver.VersionInfo.parse("0.20.2")
 def get_nim_versions():
     gh = Github(os.environ["GITHUB_TOKEN"])
     repo = gh.get_repo("nim-lang/Nim")
-    versions = []
+    versions = {}
     for tag in repo.get_tags():
         if tag.name.startswith("v"):
             try:
@@ -53,8 +53,13 @@ def get_nim_versions():
                 continue
             else:
                 if version >= MIN_NIM_VERSION:
-                    versions.append(tag.name)
-    return sorted(versions)
+                    key = (version.major, version.minor)
+                    try:
+                        if versions[key][0] < version:
+                            versions[key] = (version, tag)
+                    except KeyError:
+                        versions[key] = (version, tag)
+    return sorted([v[1].name for v in versions.values()])
 
 
 class Dumper(yaml.RoundTripDumper):
