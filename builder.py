@@ -17,6 +17,9 @@ import shutil
 import sys
 import time
 
+import semver
+
+from github import Github
 from jinja2 import (
     contextfilter,
     Environment,
@@ -34,6 +37,24 @@ docker = functools.partial(_docker, _out=sys.stdout, _err=sys.stderr)
 docker_compose = functools.partial(_docker_compose, _out=sys.stdout, _err=sys.stderr)
 
 PROJECT_DIR = Path(os.path.dirname(__file__))
+MIN_NIM_VERSION = semver.VersionInfo.parse("0.20.2")
+
+
+@functools.lru_cache(maxsize=None)
+def get_nim_versions():
+    gh = Github(os.environ["GITHUB_TOKEN"])
+    repo = gh.get_repo("nim-lang/Nim")
+    versions = []
+    for tag in repo.get_tags():
+        if tag.name.startswith("v"):
+            try:
+                version = semver.VersionInfo.parse(tag.name[1:])
+            except ValueError:
+                continue
+            else:
+                if version >= MIN_NIM_VERSION:
+                    versions.append(tag.name)
+    return sorted(versions)
 
 
 class Dumper(yaml.RoundTripDumper):
@@ -90,10 +111,11 @@ class Distro(metaclass=abc.ABCMeta):
             distro.render(**context)
 
     @classmethod
-    def build_all(cls, tag, push=False):
+    def build_all(cls, push=False):
         for distro in cls.registry.values():
             for arch in distro.archs:
-                distro.build(arch, tag=tag, push=push)
+                for nim_version in get_nim_versions():
+                    distro.build(arch, nim_version=nim_version, push=push)
 
     @property
     def context(self):
@@ -164,11 +186,14 @@ class Distro(metaclass=abc.ABCMeta):
         return Path(slugify(self.name))
 
     def get_template_context(self, **context):
+        nim_versions = get_nim_versions()
         context.update(
             dict(
                 distro=self.name,
                 distro_slug=slugify(self.name),
                 archs=self.archs,
+                nim_versions=nim_versions,
+                nim_versions_csv=",".join(nim_versions),
             )
         )
         return context
@@ -214,10 +239,9 @@ class Distro(metaclass=abc.ABCMeta):
             # Replace YAML aliases in rendered jinja output
             self.interpolate_yaml(self.github_actions_yml_path)
 
-    def build(self, arch, tag, push=False):
-        self.render(tag=tag)
-
-        image = f"elijahru/nim:{tag}-{slugify(self.name)}-{arch}"
+    def build(self, arch, nim_version, push=False):
+        self.render()
+        image = f"elijahru/nim:{slugify(self.name)}-{nim_version}-{arch}"
         dockerfile = self.out_path / f"Dockerfile.{arch}"
         try:
             docker("pull", image)
@@ -233,15 +257,19 @@ class Distro(metaclass=abc.ABCMeta):
                 image,
                 "--cache-from",
                 image,
+                "--build-arg",
+                f"NIM_VERSION={nim_version}",
             )
         if push:
             docker("push", image)
 
-    def push_manifest(self, manifest_tag, image_tag):
+    def push_manifest(self, nim_version):
         os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
-        manifest = f"elijahru/nim-{slugify(self.name)}:{manifest_tag}"
-        image = f"elijahru/nim-{slugify(self.name)}:{image_tag}"
-        images = {arch: f"{image}-{arch}" for arch in self.archs}
+        manifest = f"elijahru/nim:{slugify(self.name)}-{nim_version}"
+        images = {
+            arch: f"elijahru/nim:{slugify(self.name)}-{nim_version}-{arch}"
+            for arch in self.archs
+        }
 
         for image in images.values():
             try:
@@ -290,8 +318,8 @@ class Distro(metaclass=abc.ABCMeta):
             if id:
                 docker("kill", id, _out=None, _err=None)
 
-    def test(self, arch, tag):
-        self.render(tag=tag)
+    def test(self, arch, nim_version):
+        self.render()
 
         with self.run_host():
             docker_compose("-f", self.docker_compose_yml_path, "run", arch)
@@ -331,9 +359,11 @@ def make_parser():
     parser_list_archs = subparsers.add_parser("list-archs")
     parser_list_archs.add_argument("--distro", type=Distro.get, required=True)
 
+    # list-nim-versions
+    parser_list_nim_versions = subparsers.add_parser("list-nim-versions")
+
     # render
     parser_render = subparsers.add_parser("render")
-    parser_render.add_argument("--tag", required=True)
 
     # render
     subparsers.add_parser("render-github-actions")
@@ -342,12 +372,11 @@ def make_parser():
     parser_build = subparsers.add_parser("build")
     parser_build.add_argument("--distro", type=Distro.get, required=True)
     parser_build.add_argument("--arch", required=True)
-    parser_build.add_argument("--tag", required=True)
+    parser_build.add_argument("--nim-version", required=True)
     parser_build.add_argument("--push", action="store_true")
 
     # build-all
     parser_build_all = subparsers.add_parser("build-all")
-    parser_build_all.add_argument("--tag", required=True)
     parser_build_all.add_argument("--push", action="store_true")
 
     # clean
@@ -357,13 +386,12 @@ def make_parser():
     parser_test = subparsers.add_parser("test")
     parser_test.add_argument("--distro", type=Distro.get, required=True)
     parser_test.add_argument("--arch", required=True)
-    parser_test.add_argument("--tag", required=True)
+    parser_test.add_argument("--nim-version", required=True)
 
     # push-manifest
     parser_push_manifest = subparsers.add_parser("push-manifest")
     parser_push_manifest.add_argument("--distro", type=Distro.get, required=True)
-    parser_push_manifest.add_argument("--manifest-tag", required=True)
-    parser_push_manifest.add_argument("--image-tag", required=True)
+    parser_push_manifest.add_argument("--nim-versions", required=True)
 
     return parser
 
@@ -376,29 +404,30 @@ def main():
     elif args.subcommand == "list-archs":
         print("\n".join(args.distro.archs))
 
+    elif args.subcommand == "list-nim-versions":
+        print("\n".join(get_nim_versions()))
+
     elif args.subcommand == "render":
-        Distro.render_all(tag=args.tag)
+        Distro.render_all(nim_version=args.nim_version)
 
     elif args.subcommand == "render-github-actions":
         for distro in Distro.registry.values():
             distro.render_github_actions()
 
     elif args.subcommand == "build":
-        args.distro.build(args.arch, tag=args.tag, push=args.push)
+        args.distro.build(args.arch, nim_version=args.nim_version, push=args.push)
 
     elif args.subcommand == "build-all":
-        Distro.build_all(tag=args.tag, push=args.push)
+        Distro.build_all(push=args.push)
 
     elif args.subcommand == "clean":
         Distro.clean_all()
 
     elif args.subcommand == "test":
-        args.distro.test(args.arch, tag=args.tag)
+        args.distro.test(args.arch, nim_version=args.nim_version)
 
     elif args.subcommand == "push-manifest":
-        args.distro.push_manifest(
-            manifest_tag=args.manifest_tag, image_tag=args.image_tag
-        )
+        args.distro.push_manifest(nim_version=args.nim_version)
 
     else:
         raise ValueError(f"Unknown subcommand {args.subcommand}")

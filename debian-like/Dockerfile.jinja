@@ -1,4 +1,5 @@
 ARG ARCH={{ arch }}
+ARG NIM_VERSION
 FROM elijahru/distcc-cross-compiler-client-{{ distro_slug }}:latest
 
 # Allow compiling both locally and via distcc
@@ -15,3 +16,6 @@ ADD https://raw.githubusercontent.com/elijahr/nim-ci/github-workflows/nim-ci.sh 
 RUN /bin/bash -c "source /scripts/nim-ci.sh"
 
 ENV PATH=/root/.active-nim/bin:/root/.nimble/bin:/root/.choosenim/bin:/usr/lib/ccache:/usr/lib/distcc:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+COPY /scripts/test.sh /scripts/test.sh
+RUN chmod +x /scripts/test.sh

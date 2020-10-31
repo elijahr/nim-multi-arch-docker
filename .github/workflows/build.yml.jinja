@@ -39,8 +39,9 @@ on:
 
 jobs:
   {% for arch in archs %}
-  build-{{ arch }}:
-    name: {{ arch }}
+  {% for nim_version in nim_versions %}
+  build-{{ arch }}-{{ nim_version }}:
+    name: {{ arch }}-{{ nim_version }}
     runs-on: ubuntu-latest
 
     steps:
@@ -54,14 +55,21 @@ jobs:
           ./builder.py build \
             --distro {{ distro }} \
             --arch {{ arch }} \
-            --tag $(basename {% raw %}${{ github.event.ref }}{% endraw %}) \
-            --push
+            --nim-version {{ nim_version }}
       - name: Test
         run: |
           ./builder.py test \
             --distro {{ distro }} \
             --arch {{ arch }} \
-            --tag $(basename {% raw %}${{ github.event.ref }}{% endraw %})
+            --nim-version {{ nim_version }}
+      - name: Push image
+        run: |
+          ./builder.py build \
+            --distro {{ distro }} \
+            --arch {{ arch }} \
+            --nim-version {{ nim_version }} \
+            --push
+  {% endfor %}
   {% endfor %}
 
   push_manifests:
@@ -71,7 +79,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       {% for arch in archs %}
-      - build-{{ arch }}
+      {% for nim_version in nim_versions %}
+      - build-{{ arch }}-{{ nim_version }}
+      {% endfor %}
       {% endfor %}
 
     strategy:
@@ -90,5 +100,6 @@ jobs:
         run: |
           ./builder.py push-manifest \
             --distro {{ distro }} \
+            --nim-versions {{ nim_versions_csv }} \
             --manifest-tag $(basename {% raw %}${{ matrix.manifest_tag }}{% endraw %}) \
             --image-tag $(basename {% raw %}${{ matrix.image_tag }}{% endraw %})
