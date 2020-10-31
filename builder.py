@@ -396,7 +396,7 @@ def make_parser():
     # push-manifest
     parser_push_manifest = subparsers.add_parser("push-manifest")
     parser_push_manifest.add_argument("--distro", type=Distro.get, required=True)
-    parser_push_manifest.add_argument("--nim-versions", required=True)
+    parser_push_manifest.add_argument("--nim-version", required=True)
 
     return parser
 

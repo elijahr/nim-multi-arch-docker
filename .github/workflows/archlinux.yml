@@ -32,7 +32,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -84,7 +84,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -136,7 +136,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -188,7 +188,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -242,7 +242,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -294,7 +294,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -346,7 +346,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -398,7 +398,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -452,7 +452,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -504,7 +504,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -556,7 +556,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -608,7 +608,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -662,7 +662,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -714,7 +714,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -766,7 +766,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -818,7 +818,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -848,7 +848,8 @@ jobs:
 
 
 
-  push_manifests:
+
+  push_manifest_v0-20-2:
     name: Push manifest
     if: ${{ github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')}}
 
@@ -856,51 +857,12 @@ jobs:
     needs:
     - build-amd64-v0-20-2
 
-    - build-amd64-v1-0-10
-
-    - build-amd64-v1-2-8
-
-    - build-amd64-v1-4-0
-
-
-
     - build-arm32v6-v0-20-2
-
-    - build-arm32v6-v1-0-10
-
-    - build-arm32v6-v1-2-8
-
-    - build-arm32v6-v1-4-0
-
-
 
     - build-arm32v7-v0-20-2
 
-    - build-arm32v7-v1-0-10
-
-    - build-arm32v7-v1-2-8
-
-    - build-arm32v7-v1-4-0
-
-
-
     - build-arm64v8-v0-20-2
 
-    - build-arm64v8-v1-0-10
-
-    - build-arm64v8-v1-2-8
-
-    - build-arm64v8-v1-4-0
-
-
-
-    strategy:
-      matrix:
-        include:
-        - manifest_tag: latest
-          image_tag: ${{ github.ref }}
-        - manifest_tag: ${{ github.ref }}
-          image_tag: ${{ github.ref }}
 
     steps:
     - name: Checkout repo
@@ -911,7 +873,7 @@ jobs:
 
     - name: Install pip requirements
       run: |
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         pip3 install -r requirements.txt
 
     - name: Login to Docker Hub
@@ -920,9 +882,121 @@ jobs:
           -u elijahru --password-stdin
 
     - name: Push manifest
-      run: |-
+      run: |
         ./builder.py push-manifest \
           --distro archlinux \
-          --nim-versions v0.20.2,v1.0.10,v1.2.8,v1.4.0 \
-          --manifest-tag $(basename ${{ matrix.manifest_tag }}) \
-          --image-tag $(basename ${{ matrix.image_tag }})
+          --nim-version v0.20.2
+
+  push_manifest_v1-0-10:
+    name: Push manifest
+    if: ${{ github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')}}
+
+    runs-on: ubuntu-latest
+    needs:
+    - build-amd64-v1-0-10
+
+    - build-arm32v6-v1-0-10
+
+    - build-arm32v7-v1-0-10
+
+    - build-arm64v8-v1-0-10
+
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        submodules: recursive
+
+    - name: Install pip requirements
+      run: |
+        apt-get install python3-setuptools
+        pip3 install -r requirements.txt
+
+    - name: Login to Docker Hub
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login \
+          -u elijahru --password-stdin
+
+    - name: Push manifest
+      run: |
+        ./builder.py push-manifest \
+          --distro archlinux \
+          --nim-version v1.0.10
+
+  push_manifest_v1-2-8:
+    name: Push manifest
+    if: ${{ github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')}}
+
+    runs-on: ubuntu-latest
+    needs:
+    - build-amd64-v1-2-8
+
+    - build-arm32v6-v1-2-8
+
+    - build-arm32v7-v1-2-8
+
+    - build-arm64v8-v1-2-8
+
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        submodules: recursive
+
+    - name: Install pip requirements
+      run: |
+        apt-get install python3-setuptools
+        pip3 install -r requirements.txt
+
+    - name: Login to Docker Hub
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login \
+          -u elijahru --password-stdin
+
+    - name: Push manifest
+      run: |
+        ./builder.py push-manifest \
+          --distro archlinux \
+          --nim-version v1.2.8
+
+  push_manifest_v1-4-0:
+    name: Push manifest
+    if: ${{ github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')}}
+
+    runs-on: ubuntu-latest
+    needs:
+    - build-amd64-v1-4-0
+
+    - build-arm32v6-v1-4-0
+
+    - build-arm32v7-v1-4-0
+
+    - build-arm64v8-v1-4-0
+
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        submodules: recursive
+
+    - name: Install pip requirements
+      run: |
+        apt-get install python3-setuptools
+        pip3 install -r requirements.txt
+
+    - name: Login to Docker Hub
+      run: |
+        echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login \
+          -u elijahru --password-stdin
+
+    - name: Push manifest
+      run: |
+        ./builder.py push-manifest \
+          --distro archlinux \
+          --nim-version v1.4.0
