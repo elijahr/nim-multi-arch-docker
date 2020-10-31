@@ -2,7 +2,7 @@ version: '3'
 services:
   # host with cross compilers
   builder:
-    image: elijahru/distcc-cross-compiler-host-{{ distro_slug }}:latest
+    image: elijahru/distcc-cross-compiler-host-{{ distro|slugify }}:latest
     ports:
       - 3704:3704 # amd64
       - 3707:3707 # arm32v7
@@ -10,7 +10,7 @@ services:
   {% for arch in archs %}
   {% for nim_version in nim_versions %}
   {{ arch }}-{{ nim_version }}:
-    image: elijahru/nim:{{ distro_slug }}-{{ arch }}-{{ nim_version }}
+    image: elijahru/nim:{{ distro|slugify }}-{{ arch }}-{{ nim_version }}
     command: /bin/bash /scripts/test.sh {{ arch }} {{ nim_version }}
   {% endfor %}
   {% endfor %}

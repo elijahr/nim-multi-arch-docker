@@ -88,6 +88,7 @@ class Distro(metaclass=abc.ABCMeta):
         self.registry[name] = self
         self._context = None
         self.env = Environment(autoescape=False, undefined=StrictUndefined)
+        self.env.filters["slugify"] = slugify
 
     def __repr__(self):
         return f"{self.__class__.__name__}({repr(self.name)})"
@@ -190,7 +191,6 @@ class Distro(metaclass=abc.ABCMeta):
         context.update(
             dict(
                 distro=self.name,
-                distro_slug=slugify(self.name),
                 archs=self.archs,
                 nim_versions=nim_versions,
                 nim_versions_csv=",".join(nim_versions),

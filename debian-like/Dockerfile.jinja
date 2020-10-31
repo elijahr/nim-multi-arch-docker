@@ -1,6 +1,6 @@
 ARG ARCH={{ arch }}
 ARG NIM_VERSION
-FROM elijahru/distcc-cross-compiler-client-{{ distro_slug }}:latest
+FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:latest
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
