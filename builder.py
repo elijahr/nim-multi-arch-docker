@@ -347,7 +347,9 @@ class Distro(metaclass=abc.ABCMeta):
         self.render()
 
         with self.run_host():
-            docker_compose("-f", self.docker_compose_yml_path, "run", arch)
+            docker_compose(
+                "-f", self.docker_compose_yml_path, "run", f"{arch}-{nim_version}"
+            )
 
 
 class DebianLike(Distro):
