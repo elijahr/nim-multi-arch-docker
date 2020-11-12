@@ -36,7 +36,7 @@ from sh import which  # pylint: disable=no-name-in-module
 docker = functools.partial(_docker, _out=sys.stdout, _err=sys.stderr)
 docker_compose = functools.partial(_docker_compose, _out=sys.stdout, _err=sys.stderr)
 
-PROJECT_DIR = Path(os.path.dirname(__file__))
+PROJECT_DIR = Path(os.path.abspath(os.path.dirname(__file__)))
 MIN_NIM_VERSION = semver.VersionInfo.parse("0.20.2")
 
 
@@ -221,6 +221,17 @@ class Distro(metaclass=abc.ABCMeta):
                         shutil.copyfile(root / f, new_root / f)
                         print(f"Copied {root / f} -> {new_root / f}")
 
+                for root, _, files in os.walk(PROJECT_DIR / "scripts"):
+                    root = Path(root)
+                    new_root = Path(root.replace("scripts", self.out_path / "scripts"))
+                    for f in files:
+                        if ".jinja" in f:
+                            continue
+                        if not os.path.exists(os.path.dirname(new_root / f)):
+                            os.makedirs(os.path.dirname(new_root / f))
+                        shutil.copyfile(root / f, new_root / f)
+                        print(f"Copied {root / f} -> {new_root / f}")
+
     def render_dockerfile(self):
         for arch in self.archs:
             with self.set_context(arch=arch):
@@ -234,6 +245,15 @@ class Distro(metaclass=abc.ABCMeta):
             self.template_path / "docker-compose.yml.jinja",
             self.docker_compose_yml_path,
         )
+
+    def render_github_actions(self):
+        with self.set_context():
+            self.render_template(
+                Path(".github/workflows/build.yml.jinja"),
+                self.github_actions_yml_path,
+            )
+            # Replace YAML aliases in rendered jinja output
+            self.interpolate_yaml(self.github_actions_yml_path)
 
     def render_github_actions(self):
         with self.set_context():
@@ -369,6 +389,7 @@ def make_parser():
 
     # render
     parser_render = subparsers.add_parser("render")
+    parser_render.add_argument("--nim-version", required=True)
 
     # render
     subparsers.add_parser("render-github-actions")
