@@ -2,8 +2,8 @@
 
 set -euxo pipefail
 
-EXPECTED_ARCH=${1:-}
-EXPECTED_NIM_VERSION=${2:-}
+EXPECTED_NIM_VERSION=${1:-}
+EXPECTED_ARCH=${2:-}
 
 case $(uname -m) in
     *amd*64* | *x86*64* | x64 ) test "$EXPECTED_ARCH" == amd64 ;;

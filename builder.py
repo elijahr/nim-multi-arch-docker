@@ -62,6 +62,10 @@ def get_nim_versions():
     return sorted([v[1].name for v in versions.values()])
 
 
+def get_image_slug(*args):
+    return "-".join(map(slugify, args))
+
+
 class Dumper(yaml.RoundTripDumper):
     def ignore_aliases(self, data):
         # Strip aliases
@@ -94,6 +98,7 @@ class Distro(metaclass=abc.ABCMeta):
         self._context = None
         self.env = Environment(autoescape=False, undefined=StrictUndefined)
         self.env.filters["slugify"] = slugify
+        self.env.filters["image_slug"] = get_image_slug
 
     def __repr__(self):
         return f"{self.__class__.__name__}({repr(self.name)})"
@@ -196,6 +201,7 @@ class Distro(metaclass=abc.ABCMeta):
         context.update(
             dict(
                 distro=self.name,
+                distro_slug=slugify(self.name),
                 archs=self.archs,
                 nim_versions=nim_versions,
                 nim_versions_csv=",".join(nim_versions),
@@ -205,7 +211,7 @@ class Distro(metaclass=abc.ABCMeta):
 
     def render(self, **context):
         with self.set_context(**context):
-            self.render_dockerfile()
+            self.render_dockerfiles()
             self.render_docker_compose()
             self.render_github_actions()
 
@@ -232,13 +238,14 @@ class Distro(metaclass=abc.ABCMeta):
                         shutil.copyfile(root / f, new_root / f)
                         print(f"Copied {root / f} -> {new_root / f}")
 
-    def render_dockerfile(self):
+    def render_dockerfiles(self):
         for arch in self.archs:
-            with self.set_context(arch=arch):
-                self.render_template(
-                    self.template_path / "Dockerfile.jinja",
-                    self.out_path / "Dockerfile.{arch}",
-                )
+            for nim_version in get_nim_versions():
+                with self.set_context(arch=arch, nim_version=nim_version):
+                    self.render_template(
+                        self.template_path / "Dockerfile.jinja",
+                        self.out_path / "{nim_version}-{arch}.dockerfile",
+                    )
 
     def render_docker_compose(self):
         self.render_template(
@@ -266,13 +273,14 @@ class Distro(metaclass=abc.ABCMeta):
 
     def build(self, arch, nim_version, push=False):
         self.render()
-        image = f"elijahru/nim:{slugify(self.name)}-{nim_version}-{arch}"
-        dockerfile = self.out_path / f"Dockerfile.{arch}"
+        image_slug = get_image_slug(self.name, nim_version, arch)
+        image = f"elijahru/nim:{image_slug}"
+        dockerfile = self.out_path / f"{image_slug}.dockerfile"
         try:
             docker("pull", image)
         except ErrorReturnCode_1:
             pass
-        with self.run_host():
+        with self.run_build_host():
             docker(
                 "build",
                 self.out_path,
@@ -290,9 +298,9 @@ class Distro(metaclass=abc.ABCMeta):
 
     def push_manifest(self, nim_version):
         os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
-        manifest = f"elijahru/nim:{slugify(self.name)}-{nim_version}"
+        manifest = f"elijahru/nim:{get_image_slug(self.name, nim_version)}"
         images = {
-            arch: f"elijahru/nim:{slugify(self.name)}-{nim_version}-{arch}"
+            arch: f"elijahru/nim:{get_image_slug(self.name, nim_version, arch)}"
             for arch in self.archs
         }
 
@@ -321,11 +329,11 @@ class Distro(metaclass=abc.ABCMeta):
         docker("manifest", "push", manifest)
 
     @contextlib.contextmanager
-    def run_host(self):
+    def run_build_host(self):
         image_id = lambda: docker(
             "ps",
             "--filter",
-            "name=builder",
+            "name=build_host",
             "--format",
             "{{.ID}}",
             _out=None,
@@ -334,7 +342,7 @@ class Distro(metaclass=abc.ABCMeta):
         id = image_id()
         if id:
             docker("kill", id, _out=None, _err=None)
-        docker_compose("-f", self.docker_compose_yml_path, "up", "-d", f"builder")
+        docker_compose("-f", self.docker_compose_yml_path, "up", "-d", f"build_host")
         time.sleep(5)
         try:
             yield
@@ -346,10 +354,9 @@ class Distro(metaclass=abc.ABCMeta):
     def test(self, arch, nim_version):
         self.render()
 
-        with self.run_host():
-            docker_compose(
-                "-f", self.docker_compose_yml_path, "run", f"{arch}-{nim_version}"
-            )
+        with self.run_build_host():
+            image_slug = get_image_slug(self.name, nim_version, arch)
+            docker_compose("-f", self.docker_compose_yml_path, "run", image_slug)
 
 
 class DebianLike(Distro):
@@ -391,7 +398,6 @@ def make_parser():
 
     # render
     parser_render = subparsers.add_parser("render")
-    parser_render.add_argument("--nim-version", required=True)
 
     # render
     subparsers.add_parser("render-github-actions")
@@ -436,7 +442,7 @@ def main():
         print("\n".join(get_nim_versions()))
 
     elif args.subcommand == "render":
-        Distro.render_all(nim_version=args.nim_version)
+        Distro.render_all()
 
     elif args.subcommand == "render-github-actions":
         for distro in Distro.registry.values():
