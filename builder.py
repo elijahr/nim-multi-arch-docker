@@ -333,7 +333,7 @@ class Distro(metaclass=abc.ABCMeta):
         image_id = lambda: docker(
             "ps",
             "--filter",
-            "name=build_host",
+            "name=build-host",
             "--format",
             "{{.ID}}",
             _out=None,
@@ -342,7 +342,7 @@ class Distro(metaclass=abc.ABCMeta):
         id = image_id()
         if id:
             docker("kill", id, _out=None, _err=None)
-        docker_compose("-f", self.docker_compose_yml_path, "up", "-d", f"build_host")
+        docker_compose("-f", self.docker_compose_yml_path, "up", "-d", "build-host")
         time.sleep(5)
         try:
             yield
