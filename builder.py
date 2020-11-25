@@ -59,7 +59,12 @@ def get_nim_versions():
                             versions[key] = (version, tag)
                     except KeyError:
                         versions[key] = (version, tag)
-    return sorted([v[1].name for v in versions.values()])
+    return sorted(
+        [
+            v[1].name[1:] if v[1].name.startswith("v") else v[1].name
+            for v in versions.values()
+        ]
+    )
 
 
 def get_platform(arch):
