@@ -62,7 +62,8 @@ def get_nim_versions():
     return sorted([v[1].name for v in versions.values()])
 
 
-print(get_nim_versions())
+def get_platform(arch):
+    return f"linux/{arch.replace('arm32', 'arm32/').replace('arm64', 'arm64/')}"
 
 
 def get_image_slug(*args):
@@ -281,13 +282,15 @@ class Distro(metaclass=abc.ABCMeta):
         image = f"elijahru/nim:{image_slug}"
         dockerfile = self.out_path / f"{image_slug}.dockerfile"
         try:
-            docker("pull", image)
+            docker("pull", image, "--platform", get_platform(arch))
         except ErrorReturnCode_1:
             pass
         with self.run_build_host():
             docker(
                 "build",
                 self.out_path,
+                "--platform",
+                get_platform(arch),
                 "--file",
                 dockerfile,
                 "--tag",
@@ -310,7 +313,7 @@ class Distro(metaclass=abc.ABCMeta):
 
         for image in images.values():
             try:
-                docker("pull", image)
+                docker("pull", image, "--platform", get_platform(arch))
             except ErrorReturnCode_1:
                 pass
 
