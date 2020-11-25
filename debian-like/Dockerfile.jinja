@@ -22,4 +22,4 @@ RUN /bin/bash -c "source /scripts/nim-ci.sh"
 # TODO - cleanup!
 
 COPY /scripts/test.sh /scripts/test.sh
-RUN chmod +x /scripts/test.sh && /scripts/test.sh v{{ nim_version }} {{ arch }}
+RUN chmod +x /scripts/test.sh && /scripts/test.sh {{ nim_version }} {{ arch }}
