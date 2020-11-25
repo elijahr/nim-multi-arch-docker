@@ -63,7 +63,7 @@ def get_nim_versions():
 
 
 def get_platform(arch):
-    return f"linux/{arch.replace('arm32', 'arm32/').replace('arm64', 'arm64/')}"
+    return f"linux/{arch.replace('arm32', 'arm/').replace('arm64', 'arm64/')}"
 
 
 def get_image_slug(*args):
