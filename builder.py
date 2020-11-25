@@ -297,8 +297,6 @@ class Distro(metaclass=abc.ABCMeta):
                 image,
                 "--cache-from",
                 image,
-                "--build-arg",
-                f"NIM_VERSION={nim_version}",
             )
         if push:
             docker("push", image)

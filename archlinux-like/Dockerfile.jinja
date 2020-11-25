@@ -1,11 +1,10 @@
-ARG ARCH={{ arch }}
-ARG NIM_VERSION
 FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:latest
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
 
-ENV NIM_VERSION=$NIM_VERSION
+ARG NIM_VERSION={{ nim_version }}
+ENV NIM_VERSION={{ nim_version }}
 
 # Install deps and clear pacman cache
 RUN \

@@ -92,6 +92,8 @@ jobs:
 
     steps:
       - *checkout_repo
+      - *setup_qemu
+      - *setup_buildx
       - *install_pip_requirements
       - *dockerhub_login
       - name: Push manifest
