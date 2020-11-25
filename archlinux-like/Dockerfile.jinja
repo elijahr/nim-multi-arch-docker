@@ -5,6 +5,8 @@ FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:latest
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
 
+ENV NIM_VERSION=$NIM_VERSION
+
 # Install deps and clear pacman cache
 RUN \
     pacman -Syu --noconfirm git && \
@@ -15,5 +17,7 @@ ENV NIM_CI_VERSION=github-workflows
 ADD https://raw.githubusercontent.com/elijahr/nim-ci/github-workflows/nim-ci.sh /scripts/
 RUN /bin/bash -c "source /scripts/nim-ci.sh"
 
+# TODO - cleanup!
+
 COPY /scripts/test.sh /scripts/test.sh
-RUN chmod +x /scripts/test.sh
+RUN chmod +x /scripts/test.sh && /scripts/test.sh
