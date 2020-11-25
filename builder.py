@@ -62,6 +62,9 @@ def get_nim_versions():
     return sorted([v[1].name for v in versions.values()])
 
 
+print(get_nim_versions())
+
+
 def get_image_slug(*args):
     return "-".join(map(slugify, args))
 
@@ -244,7 +247,8 @@ class Distro(metaclass=abc.ABCMeta):
                 with self.set_context(arch=arch, nim_version=nim_version):
                     self.render_template(
                         self.template_path / "Dockerfile.jinja",
-                        self.out_path / "{nim_version}-{arch}.dockerfile",
+                        self.out_path
+                        / f"{get_image_slug(self.name, nim_version, arch)}.dockerfile",
                     )
 
     def render_docker_compose(self):
