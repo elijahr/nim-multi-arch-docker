@@ -9,7 +9,7 @@ services:
       - 3708:3708 # arm64v8
   {% for arch in archs %}
   {% for nim_version in nim_versions %}
-  {{ distro_slug | image_slug(nim_version, arch) }}:
+  {{ nim_version | image_slug(distro_slug, arch) }}:
     image: elijahru/nim:{{ distro_slug | image_slug(nim_version, arch) }}
     command: /bin/bash /scripts/test.sh {{ nim_version }} {{ arch }}
   {% endfor %}

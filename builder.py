@@ -254,7 +254,7 @@ class Distro(metaclass=abc.ABCMeta):
                     self.render_template(
                         self.template_path / "Dockerfile.jinja",
                         self.out_path
-                        / f"{get_image_slug(self.name, nim_version, arch)}.dockerfile",
+                        / f"nim:{get_image_slug(nim_version, self.name, arch)}.dockerfile",
                     )
 
     def render_docker_compose(self):
@@ -283,9 +283,9 @@ class Distro(metaclass=abc.ABCMeta):
 
     def build(self, arch, nim_version, push=False):
         self.render()
-        image_slug = get_image_slug(self.name, nim_version, arch)
+        image_slug = get_image_slug(nim_version, self.name, arch)
         image = f"elijahru/nim:{image_slug}"
-        dockerfile = self.out_path / f"{image_slug}.dockerfile"
+        dockerfile = self.out_path / f"nim:{image_slug}.dockerfile"
         try:
             docker("pull", image, "--platform", get_platform(arch))
         except ErrorReturnCode_1:
@@ -308,9 +308,9 @@ class Distro(metaclass=abc.ABCMeta):
 
     def push_manifest(self, nim_version):
         os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
-        manifest = f"elijahru/nim:{get_image_slug(self.name, nim_version)}"
+        manifest = f"elijahru/nim:{get_image_slug(nim_version, self.name)}"
         images = {
-            arch: f"elijahru/nim:{get_image_slug(self.name, nim_version, arch)}"
+            arch: f"elijahru/nim:{get_image_slug(nim_version, self.name, arch)}"
             for arch in self.archs
         }
 
@@ -365,7 +365,7 @@ class Distro(metaclass=abc.ABCMeta):
         self.render()
 
         with self.run_build_host():
-            image_slug = get_image_slug(self.name, nim_version, arch)
+            image_slug = get_image_slug(nim_version, self.name, arch)
             docker_compose("-f", self.docker_compose_yml_path, "run", image_slug)
 
 
