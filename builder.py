@@ -302,7 +302,6 @@ class Distro(metaclass=abc.ABCMeta):
             docker("push", image)
 
     def push_manifest(self, nim_version):
-        os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
         manifest = f"elijahru/nim:{get_image_slug(nim_version, self.name)}"
         images = {
             arch: f"elijahru/nim:{get_image_slug(nim_version, self.name, arch)}"
@@ -473,4 +472,5 @@ def main():
 
 
 if __name__ == "__main__":
+    os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
     main()
