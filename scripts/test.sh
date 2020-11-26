@@ -5,10 +5,13 @@ set -euxo pipefail
 EXPECTED_NIM_VERSION=${1:-}
 EXPECTED_ARCH=${2:-}
 
+echo $(uname -m)
+echo $(uname -a)
+
 case $(uname -m) in
     *amd*64* | *x86*64* | x64 ) test "$EXPECTED_ARCH" == amd64 ;;
     *x86* | *i*86* | x32 ) test "$EXPECTED_ARCH" == i386 ;;
-    *aarch64*|*arm64* ) test "$EXPECTED_ARCH" == arm64v8 ;;
+    *aarch64* | *arm64* ) test "$EXPECTED_ARCH" == arm64v8 ;;
     *arm* )
         test "$EXPECTED_ARCH" == arm32v5 ||
         test "$EXPECTED_ARCH" == arm32v6 ||
