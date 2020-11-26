@@ -472,5 +472,4 @@ def main():
 
 
 if __name__ == "__main__":
-    os.environ["DOCKER_CLI_EXPERIMENTAL"] = "enabled"
     main()

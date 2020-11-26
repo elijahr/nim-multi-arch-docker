@@ -19,6 +19,13 @@ _anchors:
     with:
       version: latest
 
+  enable_docker_experimental_features: &enable_docker_experimental_features
+    name: Docker
+    run: |
+      echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+      sudo service docker restart
+      docker version -f '{{ '{{.Server.Experimental}' }}
+
   install_pip_requirements: &install_pip_requirements
     name: Install pip requirements
     run: |
@@ -49,6 +56,7 @@ jobs:
       - *checkout_repo
       - *setup_qemu
       - *setup_buildx
+      - *enable_docker_experimental_features
       - *install_pip_requirements
       - *dockerhub_login
       - name: Build image
@@ -59,14 +67,14 @@ jobs:
             --distro {{ distro }} \
             --arch {{ arch }} \
             --nim-version {{ nim_version }}
-      - name: Test
+      {# - name: Test
         env:
           GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
         run: |
           ./builder.py test \
             --distro {{ distro }} \
             --arch {{ arch }} \
-            --nim-version {{ nim_version }}
+            --nim-version {{ nim_version }} #}
       - name: Push image
         env:
           GITHUB_TOKEN: {{ '${{ secrets.GITHUB_TOKEN }}' }}
@@ -94,6 +102,7 @@ jobs:
       - *checkout_repo
       - *setup_qemu
       - *setup_buildx
+      - *enable_docker_experimental_features
       - *install_pip_requirements
       - *dockerhub_login
       - name: Push manifest

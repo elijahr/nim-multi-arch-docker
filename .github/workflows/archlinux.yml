@@ -30,6 +30,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -48,14 +54,7 @@ jobs:
           --distro archlinux \
           --arch amd64 \
           --nim-version 0.20.2
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch amd64 \
-          --nim-version 0.20.2
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -88,6 +87,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -106,14 +111,7 @@ jobs:
           --distro archlinux \
           --arch amd64 \
           --nim-version 1.0.10
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch amd64 \
-          --nim-version 1.0.10
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -146,6 +144,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -164,14 +168,7 @@ jobs:
           --distro archlinux \
           --arch amd64 \
           --nim-version 1.2.8
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch amd64 \
-          --nim-version 1.2.8
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -204,6 +201,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -222,14 +225,7 @@ jobs:
           --distro archlinux \
           --arch amd64 \
           --nim-version 1.4.0
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch amd64 \
-          --nim-version 1.4.0
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -264,6 +260,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -282,14 +284,7 @@ jobs:
           --distro archlinux \
           --arch arm32v6 \
           --nim-version 0.20.2
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v6 \
-          --nim-version 0.20.2
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -322,6 +317,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -340,14 +341,7 @@ jobs:
           --distro archlinux \
           --arch arm32v6 \
           --nim-version 1.0.10
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v6 \
-          --nim-version 1.0.10
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -380,6 +374,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -398,14 +398,7 @@ jobs:
           --distro archlinux \
           --arch arm32v6 \
           --nim-version 1.2.8
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v6 \
-          --nim-version 1.2.8
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -438,6 +431,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -456,14 +455,7 @@ jobs:
           --distro archlinux \
           --arch arm32v6 \
           --nim-version 1.4.0
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v6 \
-          --nim-version 1.4.0
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -498,6 +490,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -516,14 +514,7 @@ jobs:
           --distro archlinux \
           --arch arm32v7 \
           --nim-version 0.20.2
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v7 \
-          --nim-version 0.20.2
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -556,6 +547,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -574,14 +571,7 @@ jobs:
           --distro archlinux \
           --arch arm32v7 \
           --nim-version 1.0.10
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v7 \
-          --nim-version 1.0.10
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -614,6 +604,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -632,14 +628,7 @@ jobs:
           --distro archlinux \
           --arch arm32v7 \
           --nim-version 1.2.8
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v7 \
-          --nim-version 1.2.8
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -672,6 +661,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -690,14 +685,7 @@ jobs:
           --distro archlinux \
           --arch arm32v7 \
           --nim-version 1.4.0
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm32v7 \
-          --nim-version 1.4.0
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -732,6 +720,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -750,14 +744,7 @@ jobs:
           --distro archlinux \
           --arch arm64v8 \
           --nim-version 0.20.2
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm64v8 \
-          --nim-version 0.20.2
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -790,6 +777,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -808,14 +801,7 @@ jobs:
           --distro archlinux \
           --arch arm64v8 \
           --nim-version 1.0.10
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm64v8 \
-          --nim-version 1.0.10
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -848,6 +834,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -866,14 +858,7 @@ jobs:
           --distro archlinux \
           --arch arm64v8 \
           --nim-version 1.2.8
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm64v8 \
-          --nim-version 1.2.8
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -906,6 +891,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -924,14 +915,7 @@ jobs:
           --distro archlinux \
           --arch arm64v8 \
           --nim-version 1.4.0
-    - name: Test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        ./builder.py test \
-          --distro archlinux \
-          --arch arm64v8 \
-          --nim-version 1.4.0
+
     - name: Push image
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -977,6 +961,12 @@ jobs:
       uses: docker/setup-buildx-action@v1
       with:
         version: latest
+
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
 
     - name: Install pip requirements
       run: |
@@ -1029,6 +1019,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -1080,6 +1076,12 @@ jobs:
       with:
         version: latest
 
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
+
     - name: Install pip requirements
       run: |
         sudo apt-get install python3-setuptools
@@ -1130,6 +1132,12 @@ jobs:
       uses: docker/setup-buildx-action@v1
       with:
         version: latest
+
+    - name: Docker
+      run: |
+        echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
+        sudo service docker restart
+        docker version -f '{{.Server.Experimental}
 
     - name: Install pip requirements
       run: |
