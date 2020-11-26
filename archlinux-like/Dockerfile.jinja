@@ -1,4 +1,4 @@
-FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:latest
+FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.3.3-{{ arch }}
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
