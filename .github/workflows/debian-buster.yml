@@ -34,7 +34,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -91,7 +91,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -148,7 +148,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -205,7 +205,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -264,7 +264,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -321,7 +321,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -378,7 +378,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -435,7 +435,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -494,7 +494,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -551,7 +551,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -608,7 +608,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -665,7 +665,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -724,7 +724,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -781,7 +781,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -838,7 +838,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -895,7 +895,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -954,7 +954,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1011,7 +1011,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1068,7 +1068,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1125,7 +1125,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1184,7 +1184,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1241,7 +1241,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1298,7 +1298,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1355,7 +1355,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1430,7 +1430,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1491,7 +1491,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1552,7 +1552,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
@@ -1613,7 +1613,7 @@ jobs:
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
-        docker version -f '{{.Server.Experimental}
+        docker version -f '{{.Server.Experimental}'
 
     - name: Install pip requirements
       run: |
