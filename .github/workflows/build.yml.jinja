@@ -24,7 +24,7 @@ _anchors:
     run: |
       echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
       sudo service docker restart
-      docker version -f '{{ '{{.Server.Experimental}' }}'
+      docker version -f '{{ '{{.Server.Experimental}}' }}'
 
   install_pip_requirements: &install_pip_requirements
     name: Install pip requirements
