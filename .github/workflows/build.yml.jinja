@@ -20,7 +20,7 @@ _anchors:
       version: latest
 
   enable_docker_experimental_features: &enable_docker_experimental_features
-    name: Docker
+    name: Enable Docker experimental features
     run: |
       echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
       sudo service docker restart

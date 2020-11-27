@@ -30,7 +30,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -87,7 +87,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -144,7 +144,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -201,7 +201,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -260,7 +260,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -317,7 +317,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -374,7 +374,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -431,7 +431,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -490,7 +490,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -547,7 +547,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -604,7 +604,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -661,7 +661,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -720,7 +720,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -777,7 +777,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -834,7 +834,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -891,7 +891,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -950,7 +950,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1007,7 +1007,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1064,7 +1064,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1121,7 +1121,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1180,7 +1180,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1237,7 +1237,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1294,7 +1294,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1351,7 +1351,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1426,7 +1426,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1487,7 +1487,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1548,7 +1548,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
@@ -1609,7 +1609,7 @@ jobs:
       with:
         version: latest
 
-    - name: Docker
+    - name: Enable Docker experimental features
       run: |
         echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
