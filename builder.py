@@ -87,7 +87,6 @@ docker_manifest_args = {
     "arm32v7": ["--arch", "arm", "--variant", "v7"],
     "arm64v8": ["--arch", "arm64", "--variant", "v8"],
     "ppc64le": ["--arch", "ppc64le"],
-    "s390x": ["--arch", "s390x"],
 }
 
 
@@ -366,7 +365,7 @@ class Distro(metaclass=abc.ABCMeta):
 class DebianLike(Distro):
     template_path = Path("debian-like")
 
-    archs = ("amd64", "i386", "arm32v7", "arm64v8", "ppc64le", "s390x")
+    archs = ("amd64", "i386", "arm32v7", "arm64v8", "ppc64le")
 
 
 class ArchLinuxLike(Distro):

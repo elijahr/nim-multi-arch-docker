@@ -17,7 +17,6 @@ case $(uname -m) in
         test "$EXPECTED_ARCH" == arm32v6 ||
         test "$EXPECTED_ARCH" == arm32v7 ;;
     *ppc64le* | powerpc64el ) test "$EXPECTED_ARCH" == ppc64le ;;
-    s390x ) test "$EXPECTED_ARCH" == s390x ;;
     *)
         echo "Unhandled arch $(uname -m)"
         exit 1 ;;
