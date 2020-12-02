@@ -1,5 +1,5 @@
 
-FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.3.6-{{ arch }}
+FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.3.7-{{ arch }}
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
@@ -22,4 +22,4 @@ RUN /bin/bash -c "source /scripts/nim-ci.sh"
 # TODO - cleanup!
 
 COPY /scripts/test.sh /scripts/test.sh
-# RUN chmod +x /scripts/test.sh && /scripts/test.sh {{ nim_version }} {{ arch }}
+RUN chmod +x /scripts/test.sh && /scripts/test.sh {{ nim_version }} {{ arch }}

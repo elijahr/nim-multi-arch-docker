@@ -10,7 +10,7 @@ services:
   {% for arch in archs %}
   {% for nim_version in nim_versions %}
   {{ nim_version | image_slug(distro_slug, arch) }}:
-    image: elijahru/nim:{{ distro_slug | image_slug(nim_version, arch) }}
+    image: elijahru/nim:{{ nim_version | image_slug(distro_slug, arch) }}
     command: /bin/bash /scripts/test.sh {{ nim_version }} {{ arch }}
   {% endfor %}
   {% endfor %}

@@ -1,10 +1,12 @@
-FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.3.6-{{ arch }}
+FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.3.7-{{ arch }}
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
 
 ARG NIM_VERSION={{ nim_version }}
+ARG PATH=/root/.active-nim/bin:/root/.nimble/bin:/root/.choosenim/bin:/usr/lib/ccache/bin:/usr/lib/distcc/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 ENV NIM_VERSION={{ nim_version }}
+ENV PATH=/root/.active-nim/bin:/root/.nimble/bin:/root/.choosenim/bin:/usr/lib/ccache/bin:/usr/lib/distcc/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 
 # Install deps and clear pacman cache
 RUN \

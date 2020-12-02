@@ -23,5 +23,5 @@ case $(uname -m) in
 esac
 
 
-NIM_VERSION=$(nim -v | head -n 1 | awk '{ print $4 }')
+NIM_VERSION=$(nim -v | head -n 1 | awk '{ print $4 }' || echo '')
 test "$NIM_VERSION" == "$EXPECTED_NIM_VERSION"
