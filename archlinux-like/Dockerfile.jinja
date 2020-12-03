@@ -18,4 +18,4 @@ ENV NIM_CI_VERSION=github-workflows
 ADD https://raw.githubusercontent.com/elijahr/nim-ci/github-workflows/nim-ci.sh /scripts/
 RUN \
     /bin/bash -c "source /scripts/nim-ci.sh && rm -Rf /scripts" && \
-    /bin/bash -c "test $(nim -v | head -n 1 | awk '{ print $4 }') == {{ nim_version }}"
+    /bin/bash -c 'test $(nim -v | head -n 1 | awk \'{ print $4 }\') == {{ nim_version }}'
