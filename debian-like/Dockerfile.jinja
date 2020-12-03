@@ -1,5 +1,5 @@
 
-FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.4.0-{{ arch }}
+FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.5.0-{{ arch }}
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1
@@ -17,9 +17,6 @@ RUN apt-get update; \
 # Install Nim
 ENV NIM_CI_VERSION=github-workflows
 ADD https://raw.githubusercontent.com/elijahr/nim-ci/github-workflows/nim-ci.sh /scripts/
-RUN /bin/bash -c "source /scripts/nim-ci.sh"
-
-# TODO - cleanup!
-
-COPY /scripts/test.sh /scripts/test.sh
-RUN chmod +x /scripts/test.sh && /scripts/test.sh {{ nim_version }} {{ arch }}
+RUN \
+    /bin/bash -c "source /scripts/nim-ci.sh && rm -Rf /scripts" && \
+    /bin/bash -c "test $(nim -v | head -n 1 | awk '{ print $4 }') == {{ nim_version }}"
