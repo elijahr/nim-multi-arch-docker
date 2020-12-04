@@ -49,7 +49,7 @@ jobs:
   {% for arch in archs %}
   {% for nim_version in nim_versions %}
   build-{{ arch }}-{{ nim_version|slugify }}:
-    name: {{ arch }}, {{ nim_version }}
+    name: {{ arch }}, Nim v{{ nim_version }}
     runs-on: ubuntu-latest
 
     steps:
