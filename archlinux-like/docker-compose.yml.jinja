@@ -2,7 +2,7 @@ version: '3'
 services:
   # host with cross compilers
   build-host:
-    image: elijahru/distcc-cross-compiler-host-{{ distro_slug }}:v0.5.1-amd64
+    image: elijahru/build-farm:2020-12-05--{{ distro|slugify }}
     ports:
       - 3704:3704 # amd64
       - 3707:3707 # arm32v7

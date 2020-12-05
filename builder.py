@@ -67,7 +67,7 @@ def get_platform(arch):
 
 
 def get_image_slug(*args):
-    return "-".join(map(slugify, args))
+    return "--".join(map(slugify, args))
 
 
 class Dumper(yaml.RoundTripDumper):
@@ -381,6 +381,7 @@ class ArchLinuxLike(Distro):
 
 # Register supported distributions
 debian_buster = DebianLike("debian:buster")
+debian_buster_slim = DebianLike("debian:buster-slim")
 archlinux = ArchLinuxLike("archlinux")
 
 

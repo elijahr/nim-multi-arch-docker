@@ -1,5 +1,5 @@
 
-FROM elijahru/distcc-cross-compiler-client-{{ distro|slugify }}:v0.5.1-{{ arch }}
+FROM elijahru/build-farm-client:2020-12-05--{{ distro|slugify }}--{{ arch }}
 
 # Allow compiling both locally and via distcc
 ENV DISTCC_FALLBACK=1

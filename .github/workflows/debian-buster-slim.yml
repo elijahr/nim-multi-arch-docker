@@ -1,6 +1,6 @@
 # Rendered from .github/workflows/build.yml.jinja
 
-name: debian:buster
+name: debian:buster-slim
 
 on:
   push:
@@ -51,7 +51,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 0.20.2
 
@@ -60,7 +60,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 0.20.2 \
           --push
@@ -108,7 +108,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 1.0.10
 
@@ -117,7 +117,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 1.0.10 \
           --push
@@ -165,7 +165,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 1.2.8
 
@@ -174,7 +174,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 1.2.8 \
           --push
@@ -222,7 +222,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 1.4.2
 
@@ -231,7 +231,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch amd64 \
           --nim-version 1.4.2 \
           --push
@@ -281,7 +281,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 0.20.2
 
@@ -290,7 +290,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 0.20.2 \
           --push
@@ -338,7 +338,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 1.0.10
 
@@ -347,7 +347,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 1.0.10 \
           --push
@@ -395,7 +395,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 1.2.8
 
@@ -404,7 +404,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 1.2.8 \
           --push
@@ -452,7 +452,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 1.4.2
 
@@ -461,7 +461,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch i386 \
           --nim-version 1.4.2 \
           --push
@@ -511,7 +511,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 0.20.2
 
@@ -520,7 +520,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 0.20.2 \
           --push
@@ -568,7 +568,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 1.0.10
 
@@ -577,7 +577,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 1.0.10 \
           --push
@@ -625,7 +625,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 1.2.8
 
@@ -634,7 +634,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 1.2.8 \
           --push
@@ -682,7 +682,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 1.4.2
 
@@ -691,7 +691,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm32v7 \
           --nim-version 1.4.2 \
           --push
@@ -741,7 +741,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 0.20.2
 
@@ -750,7 +750,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 0.20.2 \
           --push
@@ -798,7 +798,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 1.0.10
 
@@ -807,7 +807,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 1.0.10 \
           --push
@@ -855,7 +855,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 1.2.8
 
@@ -864,7 +864,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 1.2.8 \
           --push
@@ -912,7 +912,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 1.4.2
 
@@ -921,7 +921,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch arm64v8 \
           --nim-version 1.4.2 \
           --push
@@ -971,7 +971,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 0.20.2
 
@@ -980,7 +980,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 0.20.2 \
           --push
@@ -1028,7 +1028,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 1.0.10
 
@@ -1037,7 +1037,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 1.0.10 \
           --push
@@ -1085,7 +1085,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 1.2.8
 
@@ -1094,7 +1094,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 1.2.8 \
           --push
@@ -1142,7 +1142,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 1.4.2
 
@@ -1151,7 +1151,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py build \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --arch ppc64le \
           --nim-version 1.4.2 \
           --push
@@ -1215,7 +1215,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --nim-version 0.20.2
 
   push_manifest_1-0-10:
@@ -1274,7 +1274,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --nim-version 1.0.10
 
   push_manifest_1-2-8:
@@ -1333,7 +1333,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --nim-version 1.2.8
 
   push_manifest_1-4-2:
@@ -1392,5 +1392,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./builder.py push-manifest \
-          --distro debian:buster \
+          --distro debian:buster-slim \
           --nim-version 1.4.2
